@@ -11,7 +11,7 @@ server_socket.listen()
 
 
 def accept_con(s_sock):
-    
+
     request_socket, addr = s_sock.accept()
     print(f"УСТАНОВЛЕНО СОЕДИНЕНИЕ С {addr}")
     return (request_socket, addr)
@@ -28,9 +28,7 @@ def recive_data(sock):
         ready_to_read.remove(sock)
 
 
-if __name__ == '__main__':
-
-    ready_to_read.append(server_socket)
+def event_loop():
 
     while True:
 
@@ -46,3 +44,10 @@ if __name__ == '__main__':
             else:
 
                 recive_data(sock)
+
+
+
+if __name__ == '__main__':
+
+    ready_to_read.append(server_socket)
+    event_loop()
